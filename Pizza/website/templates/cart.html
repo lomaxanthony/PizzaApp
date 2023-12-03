@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+    <h2>Your Order</h2>
+    {% if user_cart %}
+        <ul>
+            {% set total_order_price = 0 %}
+            {% for item in user_cart %}
+                <li>{{ item.pizza_size }} Pizza
+                    {% if item.toppings %}
+                        with:
+                        <ul>
+                            {% for topping in item.toppings %}
+                                <li>{{ topping }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <p>Total: ${{ "{:.2f}".format(item.pizza_price|float) }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% set total_order_price = user_cart|map(attribute='pizza_price')|map('float')|sum %}
+        <h3>Total Order Price: ${{ "{:.2f}".format(total_order_price) }}</h3>
+        <a href="{{ url_for('auth.place_order') }}" class="btn btn-primary btn-lg">Place Order</a>
+        
+        <a href="/order">
+            <button class="btn btn-info btn-sm">Add More to Your Order</button>
+        </a>
+
+        <a href="{{ url_for('auth.clear_cart') }}">
+            <button class="btn btn-danger btn-sm">Clear Your Cart</button>
+        </a>
+
+        <br/>
+        <br/>
+
+        <a href="{{ url_for('auth.avg_cart') }}">
+            <button class="btn btn-info btn-sm">Average Price Per Pizza</button>
+        </a>
+
+
+
+    {% else %}
+        <p>Your cart is empty.</p>
+        <a href="/order">
+        <br/>
+            <button class="btn btn-info btn-sm">Return to Order Screen</button>
+        </a>
+    {% endif %}
+{% endblock %}

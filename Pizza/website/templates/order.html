@@ -1,4 +1,106 @@
 {% extends "base.html" %} {% block title %}Order{% endblock %}
 {% block content %}
-<h1> This is the order page</h1>
+<form method="POST" action="{{ url_for('auth.add_to_cart') }}">
+    <h2>
+        Customize the pizza to your liking!
+    </h2>
+    <br />
+    <br />
+    <br />
+    <h4>
+        Choose any size, and up to five toppings:
+    </h4>
+    <br />
+    
+    <div class="form-group">        
+        <label for="pizza_size">Choose your size:</label>
+        <select class="form-conrol" id="pizza_size" name="pizza_size" required>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </div>
+
+    <hr style="border: 5px solid rgb(35, 71, 163); margin-top: 20px;">
+    
+    <div class="'form-group">
+        <label>Meat Toppings</label>
+        <div>
+            <input type="checkbox" id="pepperoni" name="toppings" value="Pepperoni">
+            <label for="pepperoni">Pepperoni</label>
+
+            <input type="checkbox" id="sausage" name="toppings" value="Sausage">
+            <label for="sausage">Sausage</label>
+
+            <input type="checkbox" id="canadianBacon" name="toppings" value="Canadian Bacon">
+            <label for="canadianBacon">Canadian Bacon</label>
+
+            <input type="checkbox" id="bacon" name="toppings" value="Bacon">
+            <label for="bacon">Bacon</label>
+
+            <input type="checkbox" id="salami" name="toppings" value="Salami">
+            <label for="salami">Salami</label>
+
+            <input type="checkbox" id="chicken" name="toppings" value="Herb Chicken">
+            <label for="chicken">Herb Chicken</label>
+
+            <input type="checkbox" id="beef" name="toppings" value="Ground Beef">
+            <label for="beef">Ground Beef</label>
+
+        </div>
+
+    </div>
+
+    <hr style="border: 5px solid rgb(35, 71, 163); margin-top: 20px;">
+
+    <div class="'form-group">
+        <label>Veggie Toppings</label>
+        <div>
+            <input type="checkbox" id="mushrooms" name="toppings" value="Mushrooms">
+            <label for="mushrooms">Mushrooms</label>
+
+            <input type="checkbox" id="olives" name="toppings" value="Olives">
+            <label for="olives">Olives</label>
+
+            <input type="checkbox" id="onions" name="toppings" value="Onions">
+            <label for="onions">Onions</label>
+
+            <input type="checkbox" id="tomatoes" name="toppings" value="Tomatoes">
+            <label for="onions">Tomatoes</label>
+
+            <input type="checkbox" id="peppers" name="toppings" value="Green Peppers">
+            <label for="peppers">Green Peppers</label>
+
+            <input type="checkbox" id="pineapple" name="toppings" value="Pineapple">
+            <label for="pineapple">Pineapple</label>
+
+            <input type="checkbox" id="garlic" name="toppings" value="Garlic">
+            <label for="garlic">Garlic</label>
+
+            <input type="checkbox" id="jalapenos" name="toppings" value="Jalapeños">
+            <label for="jalapenos">Jalapeños</label>
+
+            <input type="checkbox" id="artichokes" name="toppings" value="Artichoke Hearts">
+            <label for="artichokes">Artichoke Hearts</label>
+
+            <input type="checkbox" id="broccoli" name="toppings" value="Broccoli">
+            <label for="broccoli">Broccoli</label>
+
+            <input type="checkbox" id="basil" name="toppings" value="Basil">
+            <label for="basil">Basil</label>
+
+        </div>        
+    </div>
+
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Add to Cart</button>
+    <a href="{{ url_for('auth.cart') }}" class="btn btn-success">
+        <span class="oi oi-cart"></span> Checkout
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</form>
 {% endblock %}
